@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { test } from './test'
 import Button from "react-bootstrap/Button";
+import CreatePost from './CreatePost'
 
 function Btn() {
   const [reset, setReset] = useState([]);
+  const [post, setPost] = useState([]);
   const dispatch = useDispatch();
   const st = useSelector( (state) => state.post.value)
 
@@ -64,6 +66,10 @@ function Btn() {
           test( reflash() )
           )
       }}>초기화</Button>
+      <Button className="m-2" onClick={() => {
+        setPost(true)
+      }}>추가</Button>
+      {post === true ? <CreatePost /> : null}
     </div>
   );
 }

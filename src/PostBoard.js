@@ -9,11 +9,11 @@ function PostBoard() {
     <div className="container">
       <div className="row">
         { sdf.map((a, index) =>
-          <div className="col-lg-2 colNum m-2">
-            <p>인덱스 : { index + 1 }</p>
-            <p>idx : { a.idx }</p>
-            <p>이름 : { a.name }</p>
-            <p>나이 : { a.age }</p>
+          <div className="col-lg-10 colNum m-1">
+            <p>NO : { index + 1 }</p>
+            <p>IDX : { a.idx }</p>
+            <p>TITLE : { a.title }</p>
+            <p>CONTENT : { a.content }</p>
           </div>
         )}
       </div>

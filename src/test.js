@@ -7,23 +7,23 @@ export const testSlice = createSlice({
         value:[
             {
                 idx : 1,
-                name : 'z',
-                age : 30
+                title : 'z',
+                content : 30
             },
             {
                 idx : 2,
-                name : 'a',
-                age : 21
+                title : 'a',
+                content : 21
             },
             {
                 idx : 3,
-                name : 'ㄱ',
-                age : 26
+                title : 'ㄱ',
+                content : 26
             },
             {
                 idx : 4,
-                name : 'ㄹ',
-                age : 48
+                title : 'ㄹ',
+                content : 48
             },
 
         ]
@@ -32,13 +32,13 @@ export const testSlice = createSlice({
         test: (state, action) => {
             state.value = action.payload
         },
-        
-        reset: (state, action) => {
-            state.value = action.initialState
+        addPost: (state, action) => {
+            console.log(action.payload)
+            state.value.push(action.payload)
         }
-    },
+    }
 });
 
 
-export const { test } = testSlice.actions;
+export const { test, addPost } = testSlice.actions;
 export default testSlice.reducer;
