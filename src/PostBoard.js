@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import { useSelector } from 'react-redux'
 
 function PostBoard() {
   const sdf = useSelector((state) => state.post.value);
-  console.log(sdf)
+
   return (
     <div className="container">
       <div className="row">
