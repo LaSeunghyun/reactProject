@@ -2,11 +2,31 @@ import React from "react";
 import { createSlice } from '@reduxjs/toolkit';
 
 export const testSlice = createSlice({
-    name: "user",
+    name: "post",
     initialState: {
-        value:{
-            title: "벌써?", content: "시간이 이렇게?"
-        }
+        value:[
+            {
+                idx : 1,
+                name : 'z',
+                age : 30
+            },
+            {
+                idx : 2,
+                name : 'a',
+                age : 21
+            },
+            {
+                idx : 3,
+                name : 'ㄱ',
+                age : 26
+            },
+            {
+                idx : 4,
+                name : 'ㄹ',
+                age : 48
+            },
+
+        ]
     },
     reducers: {
         test: (state, action) => {

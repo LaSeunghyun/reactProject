@@ -1,12 +1,12 @@
-import Left from './left' 
-import Right from './right'
+import PostBoard from './PostBoard' 
+import Btn from './Btn'
 import './App.css';
 
 function App() {
   return (
     <div>
-      <Left />
-      <Right />
+      <PostBoard />
+      <Btn />
     </div>
   );
 }
