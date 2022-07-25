@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { test } from './test'
 import Button from "react-bootstrap/Button";
 
 function Btn() {
+  const [reset, setReset] = useState([]);
   const dispatch = useDispatch();
   const st = useSelector( (state) => state.post.value)
+
+  useEffect( () => {
+    setReset(st)
+  }, [])
+
 
   function upSort(st){
     let upSort = [...st];
@@ -23,25 +29,41 @@ function Btn() {
       else return 0
     })
   }
+  function ageSort(st){
+    let ageSort = [...st];
+    return ageSort.sort((a, b) => a.age - b.age)
+  }
+  function reflash(){
+    return reset;
+  }
 
   return (
     <div>
-      <Button onClick={() => {
+      <Button className="m-2" onClick={() => {
         dispatch(
           test( upSort(st) )
           )
       }}>오름차순 정렬</Button>
-      <Button onClick={() => {
+      <Button className="m-2" onClick={() => {
         dispatch(
           test( downSort(st) )
           )
       }}>내림차순 정렬</Button>
-      
-      <Button onClick={() => {
+      <Button className="m-2" onClick={() => {
         dispatch(
           test( nameSort(st) )
           )
       }}>이름순 정렬</Button>
+      <Button className="m-2" onClick={() => {
+        dispatch(
+          test( ageSort(st) )
+          )
+      }}>나이순 정렬</Button>
+      <Button className="m-2" onClick={() => {
+        dispatch(
+          test( reflash() )
+          )
+      }}>초기화</Button>
     </div>
   );
 }

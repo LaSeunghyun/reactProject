@@ -32,6 +32,10 @@ export const testSlice = createSlice({
         test: (state, action) => {
             state.value = action.payload
         },
+        
+        reset: (state, action) => {
+            state.value = action.initialState
+        }
     },
 });
 
