@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './App.css';
 import { useSelector } from 'react-redux'
+import Btn from "./Btn";
 
 function PostBoard() {
   const sdf = useSelector((state) => state.post.value);
@@ -17,6 +18,7 @@ function PostBoard() {
           </div>
         )}
       </div>
+      <Btn />
     </div>
   );
 }

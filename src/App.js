@@ -1,12 +1,19 @@
 import PostBoard from './PostBoard' 
-import Btn from './Btn'
+import JsonDiff from './jsondiff/JsonDiff'
 import './App.css';
+import NavBar from './nav/NavBar';
+import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className='container'>
-      <PostBoard />
-      <Btn />
+    <NavBar />
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/' element={PostBoard()} />
+          <Route exact path='/jsondiff' element={JsonDiff()} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
