@@ -7,8 +7,14 @@ function JsonDiff(){
     const [files, setFiles] = useState('')
 
     const uploadHandler = (e) => {
-        
+        let file = e.target.files[0];
+        let fileReader = new FileReader();
+
+        fileReader.onload = () => {
+            console.log(fileReader.result)
         };
+        fileReader.readAsText(file);
+    };
 
     return(
         <div className="container">
