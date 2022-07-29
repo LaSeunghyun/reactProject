@@ -11,17 +11,20 @@ function JsonDiff(){
         let fileReader = new FileReader();
 
         fileReader.onload = () => {
-            console.log(fileReader.result)
+            let jsonparse = JSON.parse(fileReader.result);
+            let text = JSON.stringify(jsonparse, null, 2)
+            setFiles(text)
         };
         fileReader.readAsText(file);
     };
+    console.log(files)
 
     return(
         <div className="container">
             <h2>The semantic JSON compare tool</h2>
             <Row className="row">
                 <Col md='4'>
-                    <textarea className='size' placeholder='Enter JSON to compare, enter an URL to JSON' disabled></textarea>
+                    <textarea className='size' placeholder='Enter JSON to compare, enter an URL to JSON' value={files} disabled></textarea>
                     <input type='file' name='json1' onChange={
                         (e) => uploadHandler(e)} />
                 </Col>
