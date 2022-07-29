@@ -3,8 +3,8 @@ import '../css/JsonDiff.scss'
 import { Row, Col, Button } from 'react-bootstrap';
 
 function JsonDiff(){
-
-    const [files, setFiles] = useState('')
+    const [files, setFiles] = useState([])
+    const [diff, setDiff] = useState([])
 
     const uploadHandler = (e) => {
         let file = e.target.files[0];
@@ -12,12 +12,22 @@ function JsonDiff(){
 
         fileReader.onload = () => {
             let jsonparse = JSON.parse(fileReader.result);
-            let text = JSON.stringify(jsonparse, null, 2)
-            setFiles(text)
+            setFiles(jsonparse)
         };
         fileReader.readAsText(file);
     };
-    console.log(files)
+
+    const diffHandler = (e) => {
+        let diff = e.target.files[0];
+        let diffReader = new FileReader();
+
+        diffReader.onload = () => {
+            let parse = JSON.parse(diffReader.result);
+            setDiff(parse)
+        };
+    
+        diffReader.readAsText(diff);
+    };
 
     return(
         <div className="container">
@@ -32,7 +42,9 @@ function JsonDiff(){
                     <Button size='lg'>Json</Button>
                 </Col>
                 <Col md='4'>
-                    <textarea className='size' placeholder='Enter JSON to compare, enter an URL to JSON' disabled></textarea>
+                    <textarea className='size' placeholder='Enter JSON to compare, enter an URL to JSON' value={diff} disabled></textarea>
+                    <input type='file' name='json2' onChange={
+                        (e) => diffHandler(e)} />
                 </Col>
             </Row>
         </div>
