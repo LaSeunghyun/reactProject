@@ -23,12 +23,21 @@ function JsonDiff(){
 
         diffReader.onload = () => {
             let parse = JSON.parse(diffReader.result);
+            // let wer = JSON.stringify(parse, null, 2);
             setDiff(parse)
         };
     
         diffReader.readAsText(diff);
     };
 
+    // traverse(files, diff);
+
+    // for(let i in files){
+    //     if (diff.hasOwnProperty(i)){
+
+    //     } else {
+    //     }
+    // }
     return(
         <div className="container">
             <h2>The semantic JSON compare tool</h2>
