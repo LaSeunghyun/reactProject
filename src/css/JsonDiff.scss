@@ -4,3 +4,28 @@
         height: 800px;
     }
 }
+
+.container{
+    width: 100%;
+}
+
+.JsonBox{
+    width : 100%;
+    height: 500px;
+    display: flex;
+
+    .ABox{
+        width : 40%;
+        margin-top : 10px;
+        border: 1px solid black;
+        background-color : lightgray;
+    }
+    
+    .BBox{
+        width : 40%;
+        margin-left : auto;
+        margin-top : 10px;
+        border: 1px solid black;
+        background-color : lightgray;
+    }
+}
