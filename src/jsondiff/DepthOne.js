@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import '../css/JsonDiff.scss'
 
 function DepthOne(){
     let a = {
@@ -12,7 +13,8 @@ function DepthOne(){
         'f' : 5
     }
 
-    let [html, setHtml] = useState([]);
+    let [JsonA, setJsonA] = useState([]);
+    let [JsonB, setJsonB] = useState([]);
 
     const notType = {
         background : 'blue'
@@ -27,40 +29,53 @@ function DepthOne(){
     }
 
     let copy = {...b};
+
     useEffect( () => {
-        let temp = [];
+        let tempA = [];
+        let tempB = [];
+
         for(let key in a){
             if(b.hasOwnProperty(key)){
                 if(a[key] === b[key]){   // 프로퍼티와 벨류가 다 맞을 경우
-                    temp.push([<p>{key} : {b[key]}</p>])
-                    temp.push([<p>{key} : {a[key]}</p>])
+                    tempB.push([<p>{key} : {b[key]}</p>])
+                    tempA.push([<p>{key} : {a[key]}</p>])
                 }else if(typeof(a[key]) != typeof(b[key])){  // 벨류의 타입이 다를 경우
-                    temp.push([<p style={notType}> {key} : {b[key]} (B NOT Type) </p>])
-                    temp.push([<p style={notType}> {key} : {a[key]} (A NOT Type) </p>])
+                    tempB.push([<p style={notType}> {key} : {b[key]} (B NOT Type) </p>])
+                    tempA.push([<p style={notType}> {key} : {a[key]} (A NOT Type) </p>])
                 }else if(a[key] != b[key]){ //  벨류의 값이 다른 경우
-                    temp.push([<p style={not}> {a[key]} NOT {b[key]}</p>])
-                    temp.push([<p style={not}> {b[key]} NOT {a[key]}</p>])
+                    tempB.push([<p style={not}> {a[key]} NOT {b[key]}</p>])
+                    tempA.push([<p style={not}> {b[key]} NOT {a[key]}</p>])
                 }
                 delete copy[key];
             }else{
                 if(!b.hasOwnProperty(key)){
-                    temp.push([<p style={allNot}>{key} : {a[key]}</p>])
+                    tempA.push([<p style={allNot}>{key} : {a[key]}</p>])
                 }
                 for(let kk in copy){
-                    temp.push([<p style={allNot}>{kk} : {copy[kk]}</p>])
+                    tempB.push([<p style={allNot}>{kk} : {copy[kk]}</p>])
                 }
             }
         }
-        setHtml(temp)
+        setJsonA(tempA)
+        setJsonB(tempB)
     }, [])
 
     return(
-        <div>
-            { html.map((html, idx) => (
-                <>
-                    {html}
-                </>
-            ))}
+        <div className="JsonBox">
+            <div className="ABox">
+                { JsonA.map((JsonA, idx) => (
+                    <>
+                        {JsonA}
+                    </>
+                ))}
+            </div>
+            <div className="BBox">
+                { JsonB.map((JsonB, idx) => (
+                    <>
+                        {JsonB}
+                    </>
+                ))}
+            </div>
         </div>
     )
 
